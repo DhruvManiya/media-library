@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Nevigation from "./Nevigation";
 import Library from "./Library";
+import DataProvider from "./Context/DataProvider";
 
 function App() {
   const [displayButton, setDisplayButton] = useState(true);
@@ -17,7 +18,9 @@ function App() {
         </div>
       ) : (
         <>
-          <Nevigation />
+          <DataProvider>
+            <Nevigation />
+          </DataProvider>
         </>
       )}
     </>

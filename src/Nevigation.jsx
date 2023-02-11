@@ -14,8 +14,9 @@ import Library from "./Library";
 
 const Nevigation = () => {
   const [showModal,setShowModal] = useState(false);
-  const [files,setFiles] = useState([])
-  console.log(files)
+  const [SearchTerm,setSearchTerm] = useState('');
+  const [grid,setGrid] = useState(true);
+
   return (
     <>
       <header className="flex justify-between items-center w-full px-8 h-[4.5rem] border border-b-[1px] border-b-slate-300 shadow text-font_color transition-all">
@@ -60,6 +61,7 @@ const Nevigation = () => {
             type="search"
             placeholder="Search..."
             className=" p-2 outline-none hover:bg-slate-200 w-full rounded-3xl text-lg bg-emerald-50"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <div className="mx-2 flex justify-center items-center border-[1px] border-slate-300 rounded-md shadow cursor-pointer hover:bg-slate-200 w-[11%]">
@@ -68,11 +70,11 @@ const Nevigation = () => {
           </div>
           <h3 className="mx-4 my-2">Creation Date</h3>
         </div>
-        <div className=" mx-2 flex justify-center items-center border-[1px] border-slate-300 rounded-md shadow cursor-pointer hover:bg-slate-200">
-          <div className="p-2 border-r-[1px] border-slate-300 bg-slate-200 text-gray-900">
+        <div className=" mx-2 flex justify-center items-center border-[1px] border-slate-300 rounded-md shadow cursor-pointer ">
+          <div className={`p-2 border-r-[1px] border-slate-300 ${grid && 'bg-slate-200'} text-gray-900 hover:bg-slate-200`} onClick={() => setGrid(true)}>
             <ViewCompactIcon />
           </div>
-          <div className="p-2 ">
+          <div className={`p-2 hover:bg-slate-200 ${!grid && 'bg-slate-200'}`} onClick={() => setGrid(false)}>
             <ListIcon />
           </div>
         </div>
@@ -113,8 +115,8 @@ const Nevigation = () => {
           </div>
         </div>
       </section>
-      <Library />
-      <Model isOpen={showModal} onClose={() => setShowModal(false)} Data={(data) => setFiles(data)} />
+      <Model isOpen={showModal} onClose={() => setShowModal(false)} />
+      <Library search={SearchTerm}  grid={grid} />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import MyDropZone from "./MyDropZone";
-const model = ({ isOpen, onClose, Data }) => {
+const model = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   return (
     <>
@@ -10,7 +10,7 @@ const model = ({ isOpen, onClose, Data }) => {
           onClick={() => onClose()}
         ></div>
         <div className="w-[50%]">
-          <MyDropZone sendData={(data) => Data(data)} />
+          <MyDropZone />
         </div>
       </div>
     </>
