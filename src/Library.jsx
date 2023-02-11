@@ -25,8 +25,6 @@ const Library = ({ search, grid }) => {
     );
   }, [filteredData, grid]);
 
-  console.log(filteredData);
-
   return (
     <main className="flex justify-center m-4">
       {grid ? (
